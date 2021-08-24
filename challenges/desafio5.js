@@ -37,8 +37,11 @@ O resultado da sua query deve ter exatamente o seguinte formato (incluindo a ord
   Material consultado sobre uso do $setIntersection:
   https://docs.mongodb.com/manual/reference/operator/aggregation/setIntersection/
 
-  Material consultado sobre uso do $size in aggregations:
+  Material consultado sobre uso do $size em aggregations:
   https://docs.mongodb.com/manual/reference/operator/aggregation/size/
+
+  Material consultado sobre uso do $in
+  https://docs.mongodb.com/manual/reference/operator/query/in/#use-the--in-operator-to-match-values-in-an-array
 */
 db.movies.aggregate([
   {
