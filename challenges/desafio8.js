@@ -37,7 +37,6 @@ db.air_alliances.aggregate([
     $lookup: {
       let: {
         alliances_airlines: "$airlines",
-        alliances_name: "$name",
       },
       from: "air_routes",
       pipeline: [
@@ -51,7 +50,7 @@ db.air_alliances.aggregate([
         },
         {
           $group: {
-            _id: "$$alliances_name",
+            _id: null,
             totalRotas: {
               $count: {},
             },
@@ -59,7 +58,7 @@ db.air_alliances.aggregate([
         },
         {
           $project: {
-            _id: 1,
+            _id: 0,
             totalRotas: 1,
           },
         },
@@ -68,12 +67,9 @@ db.air_alliances.aggregate([
     },
   },
   {
-    $unwind: "$routedata",
-  },
-  {
     $project: {
-      _id: "$routedata._id",
-      totalRotas: "$routedata.totalRotas",
+      _id: "$name",
+      totalRotas: { $first: "$routedata.totalRotas" },
     },
   },
   {
